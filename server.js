@@ -119,8 +119,8 @@ app.post('/donation-receipt',(req,res)=>{
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'dasjay084@gmail.com',
-          pass: 'SeSTA@2011'
+          user: 'sestaho@sesta.org',
+          pass: '#adminsesta2011'
         }
       });
 
@@ -128,6 +128,7 @@ app.post('/donation-receipt',(req,res)=>{
       let Amount = result[0].Amount;
       let donation_date = result[0].donation_date;
       let name = result[0].name;
+      let email = result[0].email;
 
       ejs.renderFile(__dirname + "/views/donation_receipt.ejs", { donation_id ,Amount,donation_date,name }, function (err, data) {
         if (err) {
@@ -135,8 +136,8 @@ app.post('/donation-receipt',(req,res)=>{
         } else {
   
               var mailOptions = {
-              from: 'dasjay084@gmail.com',
-              to: 'jayprakash@sesta.org',
+              from: 'sestaho@sesta.org',
+              to: email,
               subject: 'Donation Receipt',
               html: data
             };
@@ -346,15 +347,15 @@ app.get('/donors/:id',(req,res)=>{
 })
 
 app.post('/newsletter',(req,res)=>{
-    var {email,sbuject,body,id,donor_id} = req.body;
+    var {email,sbuject,body,id,donor_id,email_id} = req.body;
 
     console.log(body)
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
-        auth: {
-          user: 'dasjay084@gmail.com',
-          pass: 'SeSTA@2011'
+         auth: {
+          user: 'sestaho@sesta.org',
+          pass: '#adminsesta2011'
         }
       });
       ejs.renderFile(__dirname + "/views/new.ejs", { name: 'Stranger' }, function (err, data) {
@@ -363,8 +364,8 @@ app.post('/newsletter',(req,res)=>{
         } else {
       
               var mailOptions = {
-              from: 'dasjay084@gmail.com',
-              to: 'jayprakash@sesta.org',
+              from: 'sestaho@sesta.org',
+              to: email_id,
               subject: sbuject,
               html: data
             };
